@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкета | Julia Pitarenko</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#1a1510; --gold:#c6a75e; --gold-light:#e0bf75; --card-bg:#faf6ee;
+  --card-bg2:#f3ead8; --card-bg3:#efe5d0; --text:#4a3d30;
+  --text-light:#8a7a60; --burgundy:#6B1A2A;
+}
+body{
+  font-family:'Montserrat',sans-serif; background:var(--bg);
+  background-image:radial-gradient(ellipse at 20% 50%,rgba(198,167,94,0.07) 0%,transparent 60%);
+  color:#fff;overflow-x:hidden;
+}
+.lang-bar{position:fixed;top:16px;right:16px;z-index:999;display:flex;gap:8px;}
+.lang-btn{padding:7px 16px;border-radius:20px;font-size:11px;letter-spacing:2px;font-weight:700;text-transform:uppercase;cursor:pointer;border:none;transition:0.3s;}
+.lang-btn.active{background:var(--gold);color:#1a1510;}
+.lang-btn.inactive{background:rgba(255,255,255,0.13);color:#fff;border:1px solid rgba(255,255,255,0.25);}
+.page-header{background:linear-gradient(135deg,#1a1510 0%,#2e1a0e 50%,#1a1510 100%);padding:72px 20px 38px;text-align:center;border-bottom:1px solid rgba(198,167,94,0.25);position:relative;}
+.page-header h1{font-family:'Great Vibes',cursive;color:var(--gold-light);font-size:clamp(52px,14vw,76px);line-height:1;}
+.page-header p{font-size:12px;color:rgba(255,255,255,0.6);margin-top:12px;letter-spacing:3px;text-transform:uppercase;font-weight:300;}
+.container{width:90%;max-width:700px;margin:28px auto 70px;}
+.sec-head{display:flex;align-items:center;gap:14px;margin:30px 0 16px;}
+.sec-line, .sec-line-r{flex:1;height:1px;background:linear-gradient(to right,rgba(198,167,94,0.5),transparent);}
+.sec-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;white-space:nowrap;}
+.form-card{background:linear-gradient(135deg,var(--card-bg) 0%,var(--card-bg2) 50%,var(--card-bg3) 100%);border-radius:22px;padding:34px 32px;margin-bottom:20px;position:relative;overflow:hidden;}
+.q-item{margin-bottom:22px;}
+.q-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.q-num{min-width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#1a1510;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;}
+.q-label{font-size:14px;line-height:1.6;color:var(--text);font-weight:500;}
+input.q-input,textarea.q-input{width:100%;padding:14px 18px;border-radius:14px;border:1.5px solid rgba(198,167,94,0.28);background:rgba(255,255,255,0.88);font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text);outline:none;}
+.btn-submit{display:block;width:100%;padding:23px;border-radius:50px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#1a1510;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:4px;cursor:pointer;margin-top:10px;}
+.btn-back{display:block;width:100%;max-width:280px;margin:14px auto 0;padding:18px;border-radius:50px;text-align:center;text-decoration:none;border:2px solid rgba(198,167,94,0.35);color:var(--gold);font-weight:600;font-size:13px;text-transform:uppercase;transition:0.3s;}
+.fade{opacity:0;transform:translateY(24px);transition:0.7s ease;}
+.fade.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ua')" id="btn-ua">🇺🇦 UA</button>
+  <button class="lang-btn inactive" onclick="setLang('de')" id="btn-de">🇩🇪 DE</button>
+</div>
+
+<div class="page-header">
+  <h1 id="page-h">Анкета</h1>
+  <p id="page-sub">Заповніть форму — і я зв'яжусь з вами</p>
+</div>
+
+<div class="container">
+<form action="https://formspree.io/f/xqedpyrn" method="POST">
+  <input type="hidden" name="_subject" id="form-subj" value="Нова анкета — Julia Pitarenko">
+
+  <div class="sec-head fade">
+    <div class="sec-line-r"></div>
+    <span class="sec-label" id="b1">Особисті дані</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="form-card fade">
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">1</div><div class="q-label" id="q1">Прізвище та ім'я</div></div>
+      <input class="q-input" type="text" name="full_name" required>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">2</div><div class="q-label" id="q2">Місто проживання</div></div>
+      <input class="q-input" type="text" name="city" required>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">3</div><div class="q-label" id="q3">Місце роботи / Посада</div></div>
+      <input class="q-input" type="text" name="occupation" required>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">4</div><div class="q-label" id="q4">Поточний дохід на місяць</div></div>
+      <input class="q-input" type="text" name="current_income" required>
+    </div>
+  </div>
+
+  <div class="sec-head fade">
+    <div class="sec-line-r"></div>
+    <span class="sec-label" id="b2">Ваша ситуація</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="form-card fade">
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">5</div><div class="q-label" id="q5">Точка у житті</div></div>
+      <textarea class="q-input" name="life_point" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">6</div><div class="q-label" id="q6">Про роботу</div></div>
+      <textarea class="q-input" name="work_role" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">7</div><div class="q-label" id="q7">Зміни</div></div>
+      <textarea class="q-input" name="desired_changes" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">8</div><div class="q-label" id="q8">Мрія</div></div>
+      <textarea class="q-input" name="real_dream" required></textarea>
+    </div>
+  </div>
+
+  <div class="sec-head fade">
+    <div class="sec-line-r"></div>
+    <span class="sec-label" id="b3">Ставлення до бізнесу</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="form-card fade">
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">9</div><div class="q-label" id="q9">Ставлення до МЛМ</div></div>
+      <textarea class="q-input" name="mlm_attitude" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">10</div><div class="q-label" id="q10">Причини недовіри</div></div>
+      <textarea class="q-input" name="distrust_reasons" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">11</div><div class="q-label" id="q11">Досвід</div></div>
+      <textarea class="q-input" name="past_experience" required></textarea>
+    </div>
+  </div>
+
+  <div class="sec-head fade">
+    <div class="sec-line-r"></div>
+    <span class="sec-label" id="b4">Цілі та очікування</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="form-card fade">
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">12</div><div class="q-label" id="q12">Очікування</div></div>
+      <textarea class="q-input" name="expectations" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">13</div><div class="q-label" id="q13">Формат</div></div>
+      <textarea class="q-input" name="format" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">14</div><div class="q-label" id="q14">Бажаний дохід</div></div>
+      <input class="q-input" type="text" name="target_income" required>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">15</div><div class="q-label" id="q15">Години</div></div>
+      <input class="q-input" type="text" name="hours_available" required>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">16</div><div class="q-label" id="q16">Терміни</div></div>
+      <input class="q-input" type="text" name="timeframe" required>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">17</div><div class="q-label" id="q17">Сумніви</div></div>
+      <textarea class="q-input" name="doubts" required></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-row"><div class="q-num">18</div><div class="q-label" id="q18">Найважливіше</div></div>
+      <textarea class="q-input" name="most_important" required></textarea>
+    </div>
+  </div>
+
+  <div class="fade">
+    <button type="submit" class="btn-submit" id="submit-btn">Надіслати анкету</button>
+    <a href="index.html" class="btn-back" id="back-btn">← На головну</a>
+  </div>
+</form>
+</div>
+
+<script>
+var T={
+  ua:{
+    pH:'Анкета', pS:'Заповніть форму — і я зв\'яжусь з вами',
+    b1:'Особисті дані', b2:'Ваша ситуація', b3:'Ставлення до бізнесу', b4:'Цілі та очікування',
+    q1:'Прізвище та ім\'я', q2:'Місто проживання', q3:'Місце роботи / Посада', q4:'Поточний дохід на місяць',
+    q5:'У якій точці свого життя ви зараз перебуваєте? Що викликає розчарування, а чим задоволені?',
+    q6:'Як ви описали б свою роботу та її роль у вашому житті? Що не влаштовує?',
+    q7:'Що хотіли б змінити у своєму житті?', q8:'Яка ваша реальна мрія?',
+    q9:'Як ви ставитеся до мережевого маркетингу? Вірите в перспективу, скепсис чи захоплення?',
+    q10:'Які причини недовіри або упередження є?',
+    q11:'Чи є досвід з іншими компаніями? Позитивний чи негативний? Чому?',
+    q12:'Що хотіли б отримати від співпраці зі мною?', q13:'Який формат співпраці найбільш комфортний?',
+    q14:'Скільки хотіли б заробляти на місяць для комфортного життя?',
+    q15:'Скільки годин на день/тиждень готові приділяти?', q16:'Як швидко хотіли б вийти на бажаний дохід?',
+    q17:'Чи є сумніви, що може не вийти? Якщо так — які?', q18:'Що найважливіше у співпраці зі мною?',
+    submit:'Надіслати анкету', back:'← На головну', subj:'Нова анкету — Julia Pitarenko'
+  },
+  de:{
+    pH:'Fragebogen', pS:'Füllen Sie das Formular aus',
+    b1:'Persönliche Daten', b2:'Ihre Situation', b3:'Einstellung', b4:'Ziele',
+    q1:'Name', q2:'Stadt', q3:'Job', q4:'Einkommen',
+    q5:'Wo stehen Sie jetzt?', q6:'Ihre Arbeit?', q7:'Änderungen?', q8:'Traum?',
+    q9:'Network Marketing?', q10:'Misstrauen?', q11:'Erfahrung?',
+    q12:'Erwartungen?', q13:'Format?', q14:'Zielgehalt?', q15:'Stunden?', q16:'Zeitrahmen?', q17:'Zweifel?', q18:'Wichtigstes?',
+    submit:'Absenden', back:'← Zur Hauptseite', subj:'Neuer Fragebogen — Julia Pitarenko'
+  }
+};
+function setLang(l){
+  var d=T[l];
+  document.getElementById('btn-ua').className='lang-btn '+(l==='ua'?'active':'inactive');
+  document.getElementById('btn-de').className='lang-btn '+(l==='de'?'active':'inactive');
+  document.getElementById('page-h').textContent=d.pH;
+  document.getElementById('page-sub').textContent=d.pS;
+  ['b1','b2','b3','b4'].forEach(id => {if(document.getElementById(id)) document.getElementById(id).textContent=d[id];});
+  for(var i=1;i<=18;i++){var el=document.getElementById('q'+i); if(el) el.textContent=d['q'+i];}
+  document.getElementById('submit-btn').textContent=d.submit;
+  document.getElementById('back-btn').textContent=d.back;
+  document.getElementById('form-subj').value=d.subj;
+}
+setLang('ua');
+var obs=new IntersectionObserver(e=>{e.forEach(n=>{if(n.isIntersecting)n.target.classList.add('in');});},{threshold:0.05});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
