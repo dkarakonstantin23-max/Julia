@@ -1,272 +1,498 @@
-<!DOCTYPE html>
+DOCTYPE html>
+
 <html lang="uk">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Julia Pitarenko — LR Business</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
+
 *{box-sizing:border-box;margin:0;padding:0;}
+
 html{scroll-behavior:smooth;}
 
+
 :root{
+
   --bg-color-deep: #210c10; 
+
   --bg-color-glow: #3d1b1f; 
+
   --gold: #c6a75e;
+
   --gold-light: #e0bf75;
+
   --card-bg: #faf6ee;
+
   --card-bg2: #f3ead8;
+
   --text-dark: #4a3d30;
+
   --text-light: #faf6ee;
+
 }
+
 
 body{
+
   font-family: 'Montserrat', sans-serif;
+
   background-color: var(--bg-color-deep);
+
   background-image: radial-gradient(circle at center, var(--bg-color-glow) 0%, var(--bg-color-deep) 100%);
+
   background-attachment: fixed;
+
   color: var(--text-light);
+
   overflow-x: hidden;
+
 }
+
 
 /* ── LANG BAR ── */
+
 .lang-bar{position:fixed;top:16px;right:16px;z-index:999;display:flex;gap:8px;}
+
 .lang-btn{padding:7px 16px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;cursor:pointer;border:none;transition:0.3s;}
+
 .lang-btn.active{background:var(--gold);color:#1a1510;}
+
 .lang-btn.inactive{background:rgba(255,255,255,0.1);color:var(--text-light);border:1px solid rgba(255,255,255,0.2);}
 
+
 /* ── HERO SECTION ── */
+
 .hero-section {
+
   width: 100%;
+
   display: flex;
+
   justify-content: center;
+
   padding-top: 20px;
+
 }
+
 
 .hero-image-wrapper {
+
   position: relative;
+
   width: 100%;
+
   max-width: 800px;
+
+  /* Прибираємо пробіл знизу */
+
   margin-bottom: -50px; 
+
 }
+
 
 .hero-image {
+
   width: 100%;
+
   display: block;
+
   filter: drop-shadow(0 20px 50px rgba(0,0,0,0.6));
+
 }
+
 
 .hero-text-wrapper {
+
   position: absolute;
+
   top: 32%;         
+
   left: 6%;         
+
   text-align: left; 
+
   z-index: 10;
+
   max-width: 65%;
+
 }
+
 .hero-eyebrow { font-size: clamp(8px, 2.5vw, 12px); letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 5px;}
-.hero-title-i { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(26px, 7vw, 46px); line-height: 1.1; color: var(--text-light); }
+
+.hero-title-i { font-family: 'Cormorant Grammar', serif; font-style: italic; font-size: clamp(26px, 7vw, 46px); line-height: 1.1; color: var(--text-light); }
+
 .hero-title-b { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--gold); font-size: clamp(14px, 4.5vw, 26px); text-transform: uppercase; letter-spacing: 1px;}
+
 .hero-subtitle { font-size: clamp(9px, 2.2vw, 13px); font-style: italic; margin-top: 8px; color: var(--text-light); opacity: 0.9;}
 
+
 .name-plate {
+
   position: absolute;
+
   top: 70%;         
+
   left: 6%;         
+
   z-index: 12;
+
   background: var(--card-bg2); 
+
   color: var(--text-dark);
+
   padding: 10px 20px;
+
   border-radius: 12px;
+
   box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+
 }
+
 .name-plate h2 { font-weight: 800; font-size: clamp(12px, 3.5vw, 16px); text-transform: uppercase;}
+
 .name-plate p { font-size: 8px; color: #80182a; font-weight: 700; text-transform: uppercase; margin-top: 2px;}
 
+
 /* ── CONTAINER & CARDS ── */
+
 .container{
+
   width:92%; 
+
   max-width:580px; 
+
+  /* Піднімаємо всі блоки на 5% (~ -20px) */
+
   margin: -20px auto 80px; 
+
   position: relative; 
+
   z-index: 20;
+
 }
 
+
 .card{
+
   position: relative;
-  z-index: 25;
+
+  z-index: 25; /* Вище за фото */
+
   background: linear-gradient(135deg, var(--card-bg), var(--card-bg2));
+
   border-radius: 24px; padding: 35px;
+
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
   color: var(--text-dark);
+
   margin-bottom: 10px;
+
 }
+
 .card h2{font-family:'Great Vibes', cursive; color:var(--gold); font-size:clamp(38px,10vw,48px); margin-bottom:15px;}
+
 .card p{font-size:15px; line-height: 1.6;}
+
 .card .highlight{display:block; margin-top: 15px; font-weight: 800; color: #80182a; font-size: 11px; text-transform: uppercase; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;}
+
 
 .divider { text-align: center; color: var(--gold); font-size: 14px; letter-spacing: 10px; margin: 35px 0; opacity: 0.6;}
 
-/* Стилі для кнопок форми */
-.btn-cta, .btn-anketa {
+
+.btn-cta{
+
   display:block; width:100%; max-width:320px; margin:40px auto 15px;
-  padding:20px; border-radius:50px; text-align:center; cursor:pointer;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase; letter-spacing: 2px;
-  transition: 0.3s;
-}
 
-.btn-cta {
+  padding:20px; border-radius:50px; text-align:center; text-decoration:none;
+
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color:#1a1510; font-weight:800; font-size:12px; border: none;
+
+  color:#1a1510; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:2px;
+
 }
 
-.btn-anketa {
-  background: transparent;
+.btn-anketa{
+
+  display:block; width:100%; max-width:320px; margin:0 auto;
+
+  padding:16px; border-radius:50px; text-align:center; text-decoration:none;
+
   border:2px solid var(--gold); color:var(--gold);
-  font-weight:700; font-size:11px; margin-top: 0;
+
+  font-weight:700; font-size:11px; text-transform:uppercase;
+
 }
+
 
 .social-footer{display:flex; justify-content:center; gap:10px; margin-top:50px;}
+
 .soc-btn{padding:10px 15px; border-radius:30px; text-decoration:none; color:#fff; font-size:9px; font-weight:700; text-transform:uppercase;}
+
 .soc-ig{background: linear-gradient(135deg,#833ab4,#e1306c,#fd1d1d);}
+
 .soc-tg{background:#229ed9;}
 
+
 .fade{opacity:0; transform:translateY(20px); transition:0.6s all ease;}
+
 .fade.in{opacity:1; transform:translateY(0);}
 
+
 @media (max-width: 600px) {
+
   .hero-text-wrapper { top: 15%; left: 0; max-width: 100%; text-align: center; padding: 0 15px;}
+
   .name-plate { top: 60%; left: 5%; }
+
   .container { margin-top: -30px; }
+
 }
+
 </style>
+
 </head>
+
 <body>
 
+
 <div class="lang-bar">
+
   <button class="lang-btn active" onclick="setLang('ua')" id="btn-ua">🇺🇦 UA</button>
+
   <button class="lang-btn inactive" onclick="setLang('de')" id="btn-de">🇩🇪 DE</button>
+
 </div>
+
 
 <div class="hero-section fade in">
+
   <div class="hero-image-wrapper">
+
     <img src="photo.png" class="hero-image" alt="Julia Pitarenko">
+
     <div class="hero-text-wrapper">
+
       <div class="hero-eyebrow">LR International Business</div>
+
       <div class="hero-title-i" id="h1">Побудуй своє</div>
+
       <div class="hero-title-b" id="h2">МІЖНАРОДНЕ МАЙБУТНЄ</div>
+
       <div class="hero-subtitle" id="h3">Онлайн бізнес у 30+ країнах світу</div>
+
     </div>
+
     <div class="name-plate">
+
       <h2 id="name">Julia Pitarenko</h2>
+
       <p id="np">Лідер LR · Швейцарія</p>
+
     </div>
+
   </div>
+
 </div>
+
 
 <div class="container">
+
   <div class="card fade">
+
     <h2 id="b1-h">Про мене</h2>
+
     <p id="b1-p">Лідер німецької компанії LR. Будую системний бізнес у 30 країнах світу. Створюю сильні команди та допомагаю жінкам виходити на новий рівень доходу і мислення.</p>
+
     <span class="highlight" id="b1-s">ВХОДЖУ В ТОП-20 ЛІДЕРІВ LR В УКРАЇНІ</span>
+
   </div>
+
 
   <div class="divider">◆ ◆ ◆</div>
 
+
   <div class="card fade">
+
     <h2 id="b2-h">Партнерство</h2>
+
     <p id="b2-p">Покрокове навчання, підтримка, стратегія росту — все, щоб ви досягли максимуму у своєму бізнесі.</p>
+
   </div>
+
 
   <div class="divider">◆ ◆ ◆</div>
 
+
   <div class="card fade">
+
     <h2 id="b3-h">Наставництво</h2>
+
     <p id="b3-p">Я веду до результату кожного, надихаю та підтримую команду на кожному кроці шляху до успіху.</p>
+
   </div>
+
 
   <div class="divider">◆ ◆ ◆</div>
 
+
   <div class="card fade">
+
     <h2 id="b4-h">Команда</h2>
+
     <p id="b4-p">Оточення, яке росте. Рівень, який підтягує. Масштаб, який надихає.</p>
+
   </div>
+
 
   <div class="divider">◆ ◆ ◆</div>
 
+
   <div class="card fade">
+
     <h2 id="b5-h">Експертність</h2>
+
     <p id="b5-p">Підбір продуктів під конкретні потреби, реальні результати та задоволення клієнтів на найвищому рівні.</p>
+
   </div>
 
-  <form action="https://formspree.io/f/xbdprlwa" method="POST">
-    <button type="submit" class="btn-cta fade" id="cta-btn">Написати мені →</button>
-    <button type="submit" class="btn-anketa fade" id="anketa-btn">Заповнити анкету →</button>
-  </form>
+
+  <a href="https://t.me/juliapitarenko" target="_blank" class="btn-cta fade" id="cta-btn">Написати мені →</a>
+
+  <a href="anketa.html" class="btn-anketa fade" id="anketa-btn">Заповнити анкету →</a>
+
 
   <div class="social-footer fade">
+
     <a href="https://www.instagram.com/juliapitarenko" target="_blank" class="soc-btn soc-ig">Instagram</a>
+
     <a href="https://t.me/juliapitarenko" target="_blank" class="soc-btn soc-tg">Telegram</a>
+
   </div>
+
 </div>
 
+
 <script>
+
 var T={
+
   ua:{
+
     h1:'Побудуй своє',h2:'МІЖНАРОДНЕ МАЙБУТНЄ',h3:'Онлайн бізнес у 30+ країнах світу',
+
     np:'Лідер LR · Швейцарія', 
+
     b1h:'Про мене', b1p:'Лідер німецької компанії LR. Будую системний бізнес у 30 країнах світу. Створюю сильні команди та допомагаю жінкам виходити на новий рівень доходу і мислення.', b1s:'ВХОДЖУ В ТОП-20 ЛІДЕРІВ LR В УКРАЇНІ',
+
     b2h:'Партнерство', b2p:'Покрокове навчання, підтримка, стратегія росту — все, щоб ви досягли максимуму у своєму бізнесі.',
+
     b3h:'Наставництво', b3p:'Я веду до результату кожного, надихаю та підтримую команду на кожному кроці шляху до успіху.',
+
     b4h:'Команда', b4p:'Оточення, яке росте. Рівень, який підтягує. Масштаб, який надихає.',
-    b5h:'Експертність', b5p:'Підбір продуктів под конкретні потреби, реальні результати та задоволення клієнтів на найвищому рівні.',
+
+    b5h:'Експертність', b5p:'Підбір продуктів під конкретні потреби, реальні результати та задоволення клієнтів на найвищому рівні.',
+
     cta:'Написати мені →', anketa:'Заповнити анкету →'
+
   },
+
   de:{
+
     h1:'Baue deine',h2:'INTERNATIONALE ZUKUNFT',h3:'Online-Business in 30+ Ländern',
+
     np:'LR Leader · Schweiz', 
-    b1h:'Über mich', b1p:'Leiterin des deutschen Unternehmens LR. Ich baue ein Online-Business in 30 Ländern auf. Ich erschaffe starke Teams und helfe Frauen, ein neues Einkommens- und Denklevel zu erreichen.', b1s:'TOP-20 LR LEADER IN DER UKRAINE',
+
+    b1h:'Über mich', b1p:'Leiterin des deutschen Unternehmens LR. Я baue ein Online-Business in 30 Ländern auf. Я erschaffe starke Teams і helfe Frauen, ein neues Einkommens- und Denklevel zu erreichen.', b1s:'TOP-20 LR LEADER IN DER UKRAINE',
+
     b2h:'Partnerschaft', b2p:'Schritt-für-Schritt-Schulung, Unterstützung і Wachstumsstrategie — alles, damit Sie das Maximum in Ihrem Unternehmen erreichen.',
-    b3h:'Mentoring', b3p:'Ich begleite jeden zum Ergebnis, inspiriere і unterstütze das Team auf jedem Schritt auf dem Weg zum Erfolg.',
+
+    b3h:'Mentoring', b3p:'Ich begleiте jeden zum Ergebnis, inspire і unterstütze das Team auf jedem Schritt auf dem Weg zum Erfolg.',
+
     b4h:'Team', b4p:'Ein Umfeld, das wächst. Ein Niveau, das anzieht. Ein Umfang, der inspiriert.',
+
     b5h:'Expertise', b5p:'Produktauswahl für spezifische Bedürfnisse, reale Ergebnisse і Kundenzufriedenheit auf höchstem Niveau.',
+
     cta:'Schreib mir →', anketa:'Fragebogen →'
+
   }
+
 };
 
+
 function setLang(l){
+
   var d=T[l];
+
   document.getElementById('btn-ua').className='lang-btn '+(l==='ua'?'active':'inactive');
+
   document.getElementById('btn-de').className='lang-btn '+(l==='de'?'active':'inactive');
+
   document.getElementById('h1').textContent=d.h1;
+
   document.getElementById('h2').textContent=d.h2;
+
   document.getElementById('h3').textContent=d.h3;
+
   document.getElementById('np').textContent=d.np;
+
   
+
   document.getElementById('b1-h').textContent=d.b1h;
+
   document.getElementById('b1-p').textContent=d.b1p;
+
   document.getElementById('b1-s').textContent=d.b1s;
+
   
+
   document.getElementById('b2-h').textContent=d.b2h;
+
   document.getElementById('b2-p').textContent=d.b2p;
+
   
+
   document.getElementById('b3-h').textContent=d.b3h;
+
   document.getElementById('b3-p').textContent=d.b3p;
+
   
+
   document.getElementById('b4-h').textContent=d.b4h;
+
   document.getElementById('b4-p').textContent=d.b4p;
+
   
+
   document.getElementById('b5-h').textContent=d.b5h;
+
   document.getElementById('b5-p').textContent=d.b5p;
+
   
+
   document.getElementById('cta-btn').textContent=d.cta;
+
   document.getElementById('anketa-btn').textContent=d.anketa;
+
 }
 
+
 setLang('ua');
+
 var obs=new IntersectionObserver(e => {e.forEach(n => {if(n.isIntersecting)n.target.classList.add('in');});},{threshold:0.1});
+
 document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
 </script>
+
 </body>
-</html>
+
+</html> 
